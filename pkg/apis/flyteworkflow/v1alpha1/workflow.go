@@ -20,6 +20,7 @@ const EndNodeID = "end-node"
 
 // +genclient
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+// +k8s:openapi-gen=true
 
 // FlyteWorkflow: represents one Execution Workflow object
 type FlyteWorkflow struct {
@@ -110,8 +111,9 @@ func (in *FlyteWorkflow) IsInterruptible() bool {
 	return in.NodeDefaults.Interruptible
 }
 
+// +k8s:openapi-gen=true
 type Inputs struct {
-	*core.LiteralMap
+	*core.LiteralMap `json:",inline"`
 }
 
 func (in *Inputs) UnmarshalJSON(b []byte) error {
@@ -138,8 +140,8 @@ func (in *Inputs) DeepCopyInto(out *Inputs) {
 }
 
 type Connections struct {
-	DownstreamEdges map[NodeID][]NodeID
-	UpstreamEdges   map[NodeID][]NodeID
+	DownstreamEdges map[NodeID][]NodeID `json:"downstreamEdges,omitempty"`
+	UpstreamEdges   map[NodeID][]NodeID `json:"upstreamEdges,omitempty"`
 }
 
 func (in *Connections) UnmarshalJSON(b []byte) error {
@@ -190,6 +192,7 @@ type WorkflowSpec struct {
 	// Defines the data links used to construct the final outputs of the workflow. Bindings will typically
 	// refer to specific outputs of a subset of the nodes executed in the Workflow. When executing the end-node,
 	// the execution engine will traverse these bindings and assemble the final set of outputs of the workflow.
+	// +listType=atomic
 	OutputBindings []*Binding `json:"outputBindings,omitempty"`
 
 	// Defines the policy for handling failures whether it's to fail immediately, or let the nodes run
@@ -263,9 +266,11 @@ func (in *WorkflowSpec) GetNodes() []NodeID {
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+// +k8s:openapi-gen:true
 // FlyteWorkflowList is a list of FlyteWorkflow resources
 type FlyteWorkflowList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata"`
-	Items           []FlyteWorkflow `json:"items"`
+	// +listType=atomic
+	Items []FlyteWorkflow `json:"items"`
 }

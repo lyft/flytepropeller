@@ -13,6 +13,7 @@ require (
 	github.com/fatih/color v1.9.0
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/ghodss/yaml v1.0.0
+	github.com/go-openapi/spec v0.19.3
 	github.com/go-redis/redis v6.15.7+incompatible
 	github.com/gogo/protobuf v1.3.1
 	github.com/golang/protobuf v1.3.5
@@ -22,6 +23,7 @@ require (
 	github.com/grpc-ecosystem/grpc-gateway v1.14.3 // indirect
 	github.com/imdario/mergo v0.3.8 // indirect
 	github.com/jmespath/go-jmespath v0.3.0 // indirect
+	github.com/kubeflow/crd-validation v0.0.0-00010101000000-000000000000
 	github.com/lyft/datacatalog v0.2.1
 	github.com/lyft/flyteidl v0.17.34
 	github.com/lyft/flyteplugins v0.3.34
@@ -35,6 +37,7 @@ require (
 	github.com/prometheus/procfs v0.0.10 // indirect
 	github.com/spf13/cobra v0.0.6
 	github.com/spf13/pflag v1.0.5
+	github.com/spf13/viper v1.6.2
 	github.com/stretchr/testify v1.5.1
 	golang.org/x/crypto v0.0.0-20200311171314-f7b00557c8c4 // indirect
 	golang.org/x/time v0.0.0-20191024005414-555d28b269f0
@@ -43,10 +46,12 @@ require (
 	google.golang.org/grpc v1.28.0
 	gopkg.in/ini.v1 v1.54.0 // indirect
 	k8s.io/api v0.17.3
+	k8s.io/apiextensions-apiserver v0.17.2
 	k8s.io/apimachinery v0.17.3
 	k8s.io/client-go v11.0.0+incompatible
+	k8s.io/code-generator v0.17.2
 	k8s.io/klog v1.0.0
-	k8s.io/kube-openapi v0.0.0-20200204173128-addea2498afe // indirect
+	k8s.io/kube-openapi v0.0.0-20200204173128-addea2498afe
 	k8s.io/utils v0.0.0-20200229041039-0a110f9eb7ab // indirect
 	sigs.k8s.io/controller-runtime v0.5.1
 )
@@ -59,6 +64,7 @@ require (
 replace (
 	github.com/GoogleCloudPlatform/spark-on-k8s-operator => github.com/lyft/spark-on-k8s-operator v0.1.3
 	github.com/googleapis/gnostic => github.com/googleapis/gnostic v0.3.1
+	github.com/kubeflow/crd-validation => github.com/flyteorg/crd-validation v0.1.0
 	gopkg.in/fsnotify.v1 => github.com/fsnotify/fsnotify v1.4.7
 	k8s.io/api => github.com/lyft/api v0.0.0-20191031200350-b49a72c274e0
 	k8s.io/apimachinery => github.com/lyft/apimachinery v0.0.0-20191031200210-047e3ea32d7f
